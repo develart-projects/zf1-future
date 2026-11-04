@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+* Zend_Db_Statement_Pdo translates the Zend_Db fetch flags (`FETCH_GROUP`, `FETCH_UNIQUE`, `FETCH_CLASSTYPE`, `FETCH_SERIALIZE`) to the values of the PDO constants; PHP 8.5 changed those values, so the Zend_Db constants, which mirror the old ones, no longer matched (PHP 8.5 compatibility).
+* Zend_Locale::getEnvironment() queries the current locale with `setlocale(LC_ALL, '0')`; the integer `0` is rejected with strict types on PHP 8.5 (PHP 8.5 compatibility).
+
 * Zend_XmlRpc_Value_DateTime throws Zend_XmlRpc_Value_Exception ("Cannot convert given value … to a timestamp") for a string DateTime cannot parse, with the DateTime exception as previous; the plain DateTime exception (DateMalformedStringException on PHP 8.3+) escaped before, because the `=== false` check dates from PHP 5.2.
 
 ## [1.26.0] - 2026-11-04
